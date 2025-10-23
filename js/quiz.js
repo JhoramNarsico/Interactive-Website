@@ -87,7 +87,6 @@ const answerButtonsElement = document.getElementById('answer-buttons');
 const feedbackElement = document.getElementById('quiz-feedback');
 const progressBar = document.getElementById('progress');
 const quizContainer = document.getElementById('quiz-container');
-// The result container is no longer used, so the variable is removed.
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -95,7 +94,6 @@ let score = 0;
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
-    // We also remove the logic for the result container here.
     quizContainer.classList.remove('hidden');
     showQuestion();
 }
@@ -158,15 +156,8 @@ function selectAnswer(e) {
 }
 
 function showScore() {
-    // FIX: This function is now simplified.
-    // Update progress bar to 100% at the end
     progressBar.style.width = `100%`;
-
-    // Immediately redirect to the message page.
-    // This happens after the 1.5-second delay from selectAnswer,
-    // so the user will see the feedback on their last answer before redirecting.
     window.location.href = 'message.html';
 }
 
-// Ensure the quiz starts after the whole page is loaded
 document.addEventListener('DOMContentLoaded', startQuiz);
