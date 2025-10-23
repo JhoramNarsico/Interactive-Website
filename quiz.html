@@ -7,13 +7,25 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="quiz-page">
-    <div class="container">
-        <nav class="navbar">
+
+    <!-- NEW STANDARDIZED NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-brand">For Josie ❤️</div>
+        
+        <div class="hamburger" id="hamburger-btn">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    
+        <div class="nav-links" id="nav-links">
             <a href="index.html">Home</a>
             <a href="quiz.html" class="active">Our Quiz</a>
             <a href="message.html">Message</a>
-        </nav>
+        </div>
+    </nav>
 
+    <div class="container">
         <main class="fade-in">
             <section class="card">
                 <!-- This container holds the actual quiz -->
@@ -25,13 +37,11 @@
                     <div id="answer-buttons" class="btn-grid"></div>
                     <div id="quiz-feedback"></div>
                 </div>
-
-                <!-- FIX: The result-container has been completely removed. -->
-
             </section>
         </main>
     </div>
 
+    <script src="js/main.js"></script>
     <script src="js/quiz.js"></script>
 </body>
 </html>
