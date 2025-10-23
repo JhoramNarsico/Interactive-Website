@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Quiz</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="quiz.html" class="active">Our Quiz</a>
+        </nav>
+
+        <main class="fade-in">
+            <section class="card quiz-card">
+                <h2>How well do you know us?</h2>
+                
+                <!-- This container holds the actual quiz -->
+                <div id="quiz-container">
+                    <div id="progress-bar">
+                        <div id="progress"></div>
+                    </div>
+                    <h3 id="question-text">Loading question...</h3>
+                    <div id="answer-buttons" class="btn-grid"></div>
+                </div>
+
+                <!-- This container shows up when the quiz is done -->
+                <div id="result-container" class="hidden">
+                    <h3 id="score-text"></h3>
+                    <p id="final-message"></p>
+                    <button onclick="location.reload()" class="btn">Try Again</button>
+                </div>
+
+                <div id="quiz-feedback"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/quiz.js"></script>
+</body>
+</html>
