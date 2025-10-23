@@ -1,40 +1,82 @@
 // --- CONFIGURATION START ---
-// Customize these questions! Add as many as you want.
 const quizQuestions = [
     {
         question: "Aha atong first kiss?",
         answers: [
-            { text: "La Baia", correct: true },
-            { text: "In the car", correct: false },
-            { text: "At the park", correct: false },
-            { text: "Wait, we kissed?", correct: false }
+            { text: "sa ford everest", correct: false },
+            { text: "sa ford pickup", correct: false },
+            { text: "sa satellite xu", correct: true} ,
+            { text: "sa engineering building ", correct: false }
         ]
     },
     {
-        question: "What is my absolute favorite comfort food?",
+        question: "Unsa nga date ta nagka uyab officially? grabe nagyud kung ma wrong ka",
         answers: [
-            { text: "Pizza", correct: false },
-            { text: "Ice Cream", correct: true },
-            { text: "Tacos", correct: false },
-            { text: "Sushi", correct: false }
+            { text: "November 8, 2024", correct: true },
+            { text: "November 8, 2023", correct: false },
+            { text: "November 18, 2024", correct: false },
+            { text: "December 8, 2023", correct: false }
         ]
     },
     {
-        question: "What movie can I watch over and over without getting bored?",
+        question: "Aha dire na butang ang dli hilig nako",
         answers: [
-            { text: "Mean Girls", correct: true },
-            { text: "Die Hard", correct: false },
-            { text: "The Godfather", correct: false },
-            { text: "Shrek 2", correct: false }
+            { text: "PS5", correct: false },
+            { text: "Sakyanan", correct: false },
+            { text: "Bidet", correct: false },
+            { text: "Elevator", correct: true }
         ]
     },
     {
-        question: "If we could travel anywhere right now, where would I want to go?",
+        question: "ako bang naingon ang gusto nako iingon nimo before mag graduate ka? AHAHAHA",
         answers: [
-            { text: "Paris", correct: false },
-            { text: "Japan", correct: true },
-            { text: "Hawaii", correct: false },
-            { text: "Italy", correct: false }
+            { text: "YESS", correct: false },
+            { text: "No", correct: true },
+          
+        ]
+    },
+    {
+        question: "What food ang dli gyud ta gaka sumhan",
+        answers: [
+            { text: "Raki Yata", correct: false },
+            { text: "La Baia", correct: false },
+            { text: "Chingkee", correct: false },
+            { text: "Iao Iao", correct: true }
+        ]
+    },
+    {
+        question: "Aha ta gatambay sa XU Days before magsugod ang KPOP dance contest",
+        answers: [
+            { text: "Chapel", correct: true },
+            { text: "Library", correct: false },
+            { text: "Magis", correct: false },
+            { text: "Field", correct: false }
+        ]
+    },
+    {
+        question: "Unsa imo ginote sa IG kadtong nagwatch ta og harry pottter (NO CHEATING HAHAHA)",
+        answers: [
+            { text: "Lami kayo mag rewatch og harry potter 😭", correct: true },
+            { text: "Lami kayo mag rewatch harry potter", correct: false },
+            { text: "Lami kayo mag rewatch og harry potter", correct: false },
+            { text: "Lami kayo mutanaw og harry potter 😭 ", correct: false }
+        ]
+    },
+    {
+        question: "What was I most excited about during that XU Days event? TIP: if kung naread to nimo ang collage, ez ra kayo ni",
+        answers: [
+            { text: "Libre food", correct: false },
+            { text: "Magwatch of KPOP dance contest", correct: false },
+            { text: "Makadala nagyud ko og uyab and I enjoy ang event uban nimo", correct: true },
+            { text: "Makig kita sa akong mga USTP friends", correct: false }
+        ]
+    },
+    {
+        question: "After your oath taking, what was I super happy about it TIP: if kung naread to nimo ang collage, ez ra kayo ni",
+        answers: [
+            { text: "Nag ila mi sa imong friends", correct: false },
+            { text: "Imong gown so gorgeus kayo", correct: false },
+            { text: "That my parents finally met you and your mother finally met me", correct: true },
         ]
     }
 ];
@@ -45,9 +87,7 @@ const answerButtonsElement = document.getElementById('answer-buttons');
 const feedbackElement = document.getElementById('quiz-feedback');
 const progressBar = document.getElementById('progress');
 const quizContainer = document.getElementById('quiz-container');
-const resultContainer = document.getElementById('result-container');
-const scoreText = document.getElementById('score-text');
-const finalMessage = document.getElementById('final-message');
+// The result container is no longer used, so the variable is removed.
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -55,8 +95,8 @@ let score = 0;
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
+    // We also remove the logic for the result container here.
     quizContainer.classList.remove('hidden');
-    resultContainer.classList.add('hidden');
     showQuestion();
 }
 
@@ -65,8 +105,7 @@ function showQuestion() {
     let currentQuestion = quizQuestions[currentQuestionIndex];
     questionElement.innerText = currentQuestion.question;
 
-    // Update progress bar
-    const progressPercent = (currentQuestionIndex / quizQuestions.length) * 100;
+    const progressPercent = ((currentQuestionIndex) / quizQuestions.length) * 100;
     progressBar.style.width = `${progressPercent}%`;
 
     currentQuestion.answers.forEach(answer => {
@@ -95,19 +134,16 @@ function selectAnswer(e) {
     if (isCorrect) {
         selectedBtn.classList.add('correct');
         score++;
-        feedbackElement.innerText = "Yay! You got it right! 🥰";
+        feedbackElement.innerText = "Yesss! Sakto jud ka! 🥰";
     } else {
         selectedBtn.classList.add('wrong');
         feedbackElement.innerText = "Oops! Not quite! 😅";
     }
 
-    // Disable all buttons after selection to prevent multiple guesses
     Array.from(answerButtonsElement.children).forEach(button => {
         button.disabled = true;
-        // Highlight the correct answer if they got it wrong
         if (button.dataset.correct === "true" && !isCorrect) {
              button.classList.add('correct');
-             button.style.opacity = "0.7"; // Make it slightly faded so they know which one they clicked
         }
     });
 
@@ -118,26 +154,19 @@ function selectAnswer(e) {
         } else {
             showScore();
         }
-    }, 2000); // Wait 2 seconds before next question
+    }, 1500); // Wait 1.5 seconds to show feedback before next action
 }
 
 function showScore() {
-    quizContainer.classList.add('hidden');
-    resultContainer.classList.remove('hidden');
-    
-    const scorePercent = (score / quizQuestions.length) * 100;
-    scoreText.innerText = `You scored ${score} out of ${quizQuestions.length}!`;
+    // FIX: This function is now simplified.
+    // Update progress bar to 100% at the end
+    progressBar.style.width = `100%`;
 
-    // Custom messages based on score
-    if (scorePercent === 100) {
-        finalMessage.innerText = "Perfect score! You know me better than anyone. I love you! ❤️";
-    } else if (scorePercent >= 70) {
-        finalMessage.innerText = "Pretty good! You definitely know your stuff. 😘";
-    } else {
-        finalMessage.innerText = "Well... maybe we need another date night to study? Just kidding! I love you anyway. 😉";
-    }
+    // Immediately redirect to the message page.
+    // This happens after the 1.5-second delay from selectAnswer,
+    // so the user will see the feedback on their last answer before redirecting.
+    window.location.href = 'message.html';
 }
 
-// --- UPDATED AND MORE RELIABLE WAY TO START THE QUIZ ---
-// This ensures the script waits for the HTML to be fully loaded before running.
+// Ensure the quiz starts after the whole page is loaded
 document.addEventListener('DOMContentLoaded', startQuiz);
